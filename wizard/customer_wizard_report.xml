@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	   <record id="customer_statement_wizard_pdf_form" model="ir.ui.view">
+	        <field name="name">customer.pdf.report.wizard</field>
+	        <field name="model">customer.pdf.report.wizard</field>
+	        <field name="arch" type="xml">
+	            <form string="">
+	               <group col="4" colspan="4">
+					   <field name="from_date" required="1"/>
+					   <field name="to_date" required="1"/>
+					   <field name="partner_id" required="1"/>
+
+				  </group>
+				  <footer>
+
+				  	<button name="print_report_pdf" string="Print PDF" type="object" class="oe_highlight" />
+				  	<button string="Cancel" class="bin-primary" special="cancel"/>
+				  </footer>
+	            </form>
+	        </field>
+        </record>
+
+    	 <record id="customer_statement_wizard_pdf_action" model="ir.actions.act_window">
+	       <field name="name">CUSTOMER STATEMENT REPORT</field>
+	       <field name="type">ir.actions.act_window</field>
+	       <field name="res_model">customer.pdf.report.wizard</field>
+	       <field name='view_mode'>form</field>
+	       <field name="view_id" ref="customer_statement_wizard_pdf_form"/>
+	       <field name="target">new</field>
+	    </record>
+
+		 <menuitem id="customer_pdf_report_root_menu"
+                  name="Partners SOA Acc"
+                  parent="account.menu_finance_reports"
+                  action="customer_statement_wizard_pdf_action"
+                  />
+
+
+    </data>
+ </odoo>
